@@ -25,6 +25,25 @@
         .button2:hover {
           box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
         }
+         blink {
+    animation: blinker 0.6s linear infinite;
+    color: white;
+}
+@keyframes blinker {
+    50% { opacity: 0; }
+}
+.blink-one {
+    animation: blinker-one 1s linear infinite;
+}
+@keyframes blinker-one {
+    0% { opacity: 0; }
+}
+.blink-two {
+    animation: blinker-two 1.4s linear infinite;
+}
+@keyframes blinker-two {
+    100% { opacity: 0; }
+}
     </style>
 </head>
 <body>
@@ -69,11 +88,11 @@
             <td><img src="" height="100px" width="100px"  th:src="@{${'/productImages/' + product.imageName}}"></td>
             <td><a href="" th:href="@{/admin/product/delete/{id}(id=${product.id})}" class="btn btn-danger">Delete</a></td>
             <td><a href="" th:href="@{/admin/product/update/{id}(id=${product.id})}" class="btn btn-warning">Update</a></td>
-            <td th:text="${product.stock}"  > 100
-                <td th:if= "${product.stock > 50}" style="color:white; padding: 8px; margin-top: 9px;" class="btn btn-success">
-                    sufficient
-            <td th:if="${product.stock <= 50 }" style="color:white; padding: 8px; margin-top: 9px;" class="btn btn-danger">
-                 Stock is less update
+            <td th:text="${product.stock}"> 100
+                <td th:if= "${product.stock > 10}" style="color:white; padding: 8px; margin-top: 9px;" class="btn btn-success">
+            sufficient qty </td>
+           <td th:if="${product.stock <=10 }" style="color:white; padding: 8px; margin-top: 9px;" class="btn btn-danger">
+               <blink> less stock  </blink>
             </td>
         </tr>
         </tbody>

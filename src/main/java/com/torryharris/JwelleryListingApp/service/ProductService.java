@@ -33,8 +33,13 @@ public class ProductService {
     public int getStockDec(int id)
     {
         return productRepository.StockDecrement(id);
-    }
+    } //decrement
 
+
+    public List<Product> all()
+    {
+     return productRepository.findAll();
+    }
     public int getStockInc(int id) {
         return productRepository.StockIncrement(id);
     }

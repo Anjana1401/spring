@@ -139,6 +139,25 @@
          height:550px;
          width:550px
          }
+        blink {
+    animation: blinker 0.6s linear infinite;
+    color: red;
+}
+@keyframes blinker {
+    50% { opacity: 0; }
+}
+.blink-one {
+    animation: blinker-one 1s linear infinite;
+}
+@keyframes blinker-one {
+    0% { opacity: 0; }
+}
+.blink-two {
+    animation: blinker-two 1.4s linear infinite;
+}
+@keyframes blinker-two {
+    100% { opacity: 0; }
+}
     </style>
 </head>
 <body>
@@ -165,8 +184,6 @@
                 <li class="nav-item active">
                     <pre><span style="color:white; font-size:30px;" th:text="${cartCount}">0</span>        </pre>
                 </li>
-                Hurry only less stock available:
-
 
             </ul>
         </div>
@@ -202,8 +219,11 @@
             <p th:text="${product.description}"></p>
             <a href="" th:href="@{/addToCart/{id}(id = ${product.id})}" onclick="" class="button button2" style="color:white;">Add to cart</a>
                 <div>
-                <label> hurry only : </label>
+                <label> Stock left : </label>
                     <p th:text="${product.stock}">left</p>
+                    <div th:if= "${product.stock <= 10 }" style="padding: 8px; margin-top: 9px;" >
+                        <blink> Hurry up book fast </blink>
+                    </div>
                 </div>
             </center>
         </div>

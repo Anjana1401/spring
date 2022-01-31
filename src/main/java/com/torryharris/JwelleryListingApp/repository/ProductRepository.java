@@ -16,7 +16,8 @@ public interface ProductRepository extends JpaRepository<Product,Long>{
 
     @Query(value = "select * from product where name like ?",nativeQuery = true)
     public List<Product> search(String keyword);
-    @Transactional // stocks-1
+
+    @Transactional // stocks-1 48-->47
     @Modifying
     @Query(value = "update product  p set p.stock = p.stock-1 where p.id = ?",nativeQuery = true)
     int StockDecrement(int id);
