@@ -25,7 +25,8 @@ public class HomeController {
         return "index";
     }
     @GetMapping("/logout")
-    public String logout(){
+    public String logout(Model model){
+        model.addAttribute("cart",GlobalData.cart.removeAll(GlobalData.cart));
         return "sign";
     }
     @GetMapping("/shop/search")

@@ -217,6 +217,7 @@
                 <spna th:text="${product.weight}"></spna> grams.
             </h5>
             <p th:text="${product.description}"></p>
+                <div th:if= "${product.stock >= 1 }">
             <a href="" th:href="@{/addToCart/{id}(id = ${product.id})}" onclick="" class="button button2" style="color:white;">Add to cart</a>
                 <div>
                 <label> Stock left : </label>
@@ -224,6 +225,10 @@
                     <div th:if= "${product.stock <= 10 }" style="padding: 8px; margin-top: 9px;" >
                         <blink> Hurry up book fast </blink>
                     </div>
+                </div>
+                </div>
+                <div th:if= "${product.stock == 0 }" style="padding: 8px; margin-top: 9px;" >
+                    <blink> OUT OF STOCK </blink>
                 </div>
             </center>
         </div>

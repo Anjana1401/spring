@@ -91,8 +91,11 @@
             <td th:text="${product.stock}"> 100
                 <td th:if= "${product.stock > 10}" style="color:white; padding: 8px; margin-top: 9px;" class="btn btn-success">
             sufficient qty </td>
-           <td th:if="${product.stock <=10 }" style="color:white; padding: 8px; margin-top: 9px;" class="btn btn-danger">
+           <td th:if="${product.stock <=10 && product.stock >=1 }" style="color:white; padding: 8px; margin-top: 9px;" class="btn btn-danger">
                <blink> less stock  </blink>
+            </td>
+            <td th:if="${product.stock == 0 }" style="color:white; padding: 8px; margin-top: 9px;" class="btn btn-danger">
+                <blink> NO STOCK </blink>
             </td>
         </tr>
         </tbody>

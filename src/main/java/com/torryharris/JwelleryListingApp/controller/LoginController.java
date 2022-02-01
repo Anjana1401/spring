@@ -1,9 +1,12 @@
 package com.torryharris.JwelleryListingApp.controller;
 
+import com.torryharris.JwelleryListingApp.global.GlobalData;
+import com.torryharris.JwelleryListingApp.model.Product;
 import com.torryharris.JwelleryListingApp.model.User;
 import com.torryharris.JwelleryListingApp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -31,7 +34,7 @@ public class LoginController {
         return "sign";
     }
     @RequestMapping("/login")
-    public String user(User user, HttpServletRequest request){
+    public String user(User user, HttpServletRequest request, Model model){
         String username=request.getParameter("email");
         String password=request.getParameter("password");
         User user1=userRepo.findUserByEmail(username).orElse(new User());
@@ -39,6 +42,8 @@ public class LoginController {
             return "adminHome";
         }
         else if(username.equals(user1.getEmail()) && password.equals(user1.getPassword())){
+         //new user came ////cart will be zero
+           model.addAttribute("cart",GlobalData.cart.removeAll(GlobalData.cart));
             return "index";
         }
         else {

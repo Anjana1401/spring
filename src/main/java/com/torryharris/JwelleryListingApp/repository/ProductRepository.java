@@ -24,6 +24,6 @@ public interface ProductRepository extends JpaRepository<Product,Long>{
 
     @Transactional  //stock+1
     @Modifying
-    @Query(value = "update product  p set p.stock = p.stock+1 where p.id = ?",nativeQuery = true)
+    @Query(value = "update product  p set p.stock = p.stock+1 where p.id = ? ",nativeQuery = true)
     int StockIncrement(int id);
 }

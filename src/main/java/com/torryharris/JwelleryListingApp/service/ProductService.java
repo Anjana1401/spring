@@ -21,8 +21,9 @@ public class ProductService {
     public void addProduct(Product product){
         productRepository.save(product);
     }
-    public void removeProductById(long id){
+    public int removeProductById(long id){
         productRepository.deleteById(id);
+        return 0;
     }
     public Optional<Product> getProductById(long id){
         return productRepository.findById(id);
@@ -43,4 +44,5 @@ public class ProductService {
     public int getStockInc(int id) {
         return productRepository.StockIncrement(id);
     }
+
 }

@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Controller
@@ -20,9 +21,13 @@ public class CartController {
     ProductService productService;
     @Autowired
     ProductRepository productRepository;
+
+    ArrayList<Product> products=new ArrayList<>();
     @GetMapping("/addToCart/{id}")
     public String addToCart(@PathVariable int id,Model model){
+
           GlobalData.cart.add(productService.getProductById(id).get()); //get entire d
+  //    System.out.println(model.addAttribute("all",productService.all()));
           model.addAttribute("stock",productService.getStockDec(id)); //stock--> stock-1
          // System.out.print(model.addAttribute("stock",productService.getStockDec(id)));
           return "redirect:/shop";
@@ -38,11 +43,10 @@ public class CartController {
 
     @GetMapping("/cart/removeItem/{index}")
     public String cartItemRemove(@PathVariable int index, Model model){ //remove from cart product(id,name...)
-
-        GlobalData.cart.remove(index);
-
-      //  model.addAttribute("stock",productService.getStockInc(GlobalData.cart.indexOf(index)));
-       // System.out.println(model.addAttribute("stock",productService.getStockInc(GlobalData.cart.indexOf(index))));//stock+1
+        int ids= Math.toIntExact(GlobalData.cart.get(index).getId());
+    //     System.out.print(ids);
+        model.addAttribute("stock",productService.getStockInc(ids)); //stock--> stock-1
+        GlobalData.cart.remove(index);  //0
         return "redirect:/cart";
     }
 
