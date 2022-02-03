@@ -74,6 +74,12 @@
 			<artifactId>tomcat-jasper</artifactId>
 			<version>9.0.56</version>
 		</dependency>
+		<dependency>
+			<groupId>com.twilio.sdk</groupId>
+			<artifactId>twilio</artifactId>
+			<version>8.25.1</version>
+		</dependency>
+
 	</dependencies>
 	<build>
 		<plugins>

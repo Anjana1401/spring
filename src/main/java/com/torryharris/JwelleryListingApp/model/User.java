@@ -23,6 +23,8 @@ public class User {
     @Email(message = "{errors.invalid_email}")
     private String email;
     @NotEmpty
+    private long phoneNumber;
+    @NotEmpty
     private String password;
     @ManyToMany(cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",joinColumns = {@JoinColumn(name = "USER_ID",referencedColumnName = "ID")},inverseJoinColumns={@JoinColumn(name = "ROLE_ID",referencedColumnName = "ID")})
@@ -33,6 +35,7 @@ public class User {
         this.email= user.getEmail();
         this.password= user.getPassword();
         this.roles= user.getRoles();
+        this.phoneNumber= user.getPhoneNumber();
     }
     public User(){
 
